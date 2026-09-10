@@ -1,6 +1,6 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/board-dark.svg?v=202609102337">
-  <img alt="Devank Yadav — a glanceOS board showing pushes this week, public repositories, last push, and what is currently shipping." src="assets/board-light.svg?v=202609102337">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/board-dark.svg?v=2026091023">
+  <img alt="Devank Yadav — a glanceOS board showing pushes this week, public repositories, last push, and what is currently shipping." src="assets/board-light.svg?v=2026091023">
 </picture>
 
 <p align="right"><img alt="Profile views" src="https://komarev.com/ghpvc/?username=devank-yadav&label=profile%20views&color=24292f&style=flat-square"></p>
@@ -36,7 +36,7 @@ Not all of it is on GitHub. The hardware and the client work live elsewhere; tho
 | **[simple-teleprompter](https://github.com/devank-yadav/simple-teleprompter)** | Adjustable speed, mirroring, keyboard control. One page, no dependencies, no build step. | Vanilla JS |
 | **[CarbonSight](https://github.com/pennapps-carbon-sight/carbon-sight)** · 2025 | Carbon-aware LLM routing — Google ADK agents send each prompt to the greenest Gemini model that can handle it, cache near-duplicate prompts by embedding, and reward the savings in `$GREEN`. 🏆 **MLH Best Use of the Gemini API, PennApps XXVI.** | Python · Google ADK · Gemini · React · Supabase |
 | **[Tuk Tuk](https://devpost.com/software/tuk-tuk-lowz06)** · 2025 | Campus carpooling where everyone is a verified member. Students, faculty, and staff post and search rides. Built at **HackPSU Spring 2025**. | Web |
-| **[Zoodu](https://devpost.com/software/zoodu)** · 2024 | AI career and study guidance for students — turns a resume and a set of goals into personalised career paths, programmes, and next steps. 🏆 **Best RAG Chatbot, HackPSU Fall 2024.** | Flask · Python · OpenAI · SQL |
+| **[Zoodu](https://github.com/devank-yadav/zoodu)** · 2024 | AI career and study guidance for students — suggests programmes that build on your degree, finds the skill gaps, and turns them into a learning plan. 🏆 **Best RAG Chatbot, HackPSU Fall 2024.** | Flask · Python · OpenAI · SQL |
 | **ESP32 water-tank automation** | Embedded automation for a water tank. Runs unwatched, which is the whole point. | ESP32 · C |
 
 Also an **iPad-to-Mac drawing tablet** with a driver I wrote myself (2026), and a **Škoda India
