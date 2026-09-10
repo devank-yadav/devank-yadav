@@ -1,9 +1,8 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/board-dark.svg?v=2026091023">
-  <img alt="Devank Yadav — a glanceOS board showing pushes this week, public repositories, last push, and what is currently shipping." src="assets/board-light.svg?v=2026091023">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/board-dark.svg?v=202609102354">
+  <img alt="Devank Yadav — a glanceOS board showing pushes this week, public repositories, last push, and what is currently shipping." src="assets/board-light.svg?v=202609102354">
 </picture>
 
-<p align="right"><img alt="Profile views" src="https://komarev.com/ghpvc/?username=devank-yadav&label=profile%20views&color=24292f&style=flat-square"></p>
 
 That board is a **glanceOS** screen. glanceOS is the dashboard platform I build — it turns any
 screen into something calm and glanceable, and a GitHub profile is a screen people glance at
@@ -64,3 +63,6 @@ Supabase · Docker · embedded
 
 <sub>The board above regenerates hourly from the GitHub API. Source in
 <a href="scripts/render-board.mjs"><code>scripts/render-board.mjs</code></a>.</sub>
+
+<!-- 1×1 hit counter: counts profile views for the board above. Invisible on purpose. -->
+<img src="https://komarev.com/ghpvc/?username=devank-yadav" width="1" height="1" alt="">

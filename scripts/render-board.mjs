@@ -6,7 +6,7 @@
 //
 // Run: GITHUB_TOKEN=... USER=devank-yadav node scripts/render-board.mjs
 
-import { writeFile } from 'node:fs/promises'
+import { readFile, writeFile } from 'node:fs/promises'
 
 const USER = process.env.USER_LOGIN || 'devank-yadav'
 const TOKEN = process.env.GITHUB_TOKEN
@@ -47,6 +47,35 @@ async function pushActivity() {
   return { pushes, latest }
 }
 
+
+/**
+ * Profile views. GitHub has no API for them, so the count comes from a hit
+ * counter that visitors' browsers load via a 1×1 pixel in the README. That
+ * counter has no read-only endpoint — reading it here counts as a hit too — so
+ * we record how many times this script has read it and subtract those.
+ */
+const STATE_FILE = 'assets/board-state.json'
+const COUNTER_URL = `https://komarev.com/ghpvc/?username=${USER}`
+
+async function profileViews() {
+  let state = { counterReads: 0, lastViews: null }
+  try { state = { ...state, ...JSON.parse(await readFile(STATE_FILE, 'utf8')) } } catch {}
+  try {
+    const svg = await (await fetch(COUNTER_URL)).text()
+    const numbers = [...svg.matchAll(/>([\d,]+)</g)].map((m) => Number(m[1].replace(/,/g, '')))
+    if (!numbers.length) throw new Error('no count in counter SVG')
+    state.counterReads += 1
+    state.lastViews = Math.max(0, numbers.at(-1) - state.counterReads)
+  } catch (err) {
+    // Keep the last known value rather than showing a wrong one.
+    console.warn(`views: ${err.message}; keeping ${state.lastViews}`)
+  }
+  await writeFile(STATE_FILE, JSON.stringify(state, null, 2) + '\n')
+  return state.lastViews
+}
+
+const compact = (n) => (n == null ? '—' : n >= 10000 ? `${(n / 1000).toFixed(1)}k` : n.toLocaleString('en-US'))
+
 const relativeDay = (date) => {
   if (!date) return 'unknown'
   const days = Math.floor((Date.now() - date.getTime()) / 864e5)
@@ -67,7 +96,7 @@ const cell = (x, y, label, value, ink, muted, size = 34) => `
   <text x="${x}" y="${y + 38}" font-size="${size}" font-weight="600" fill="${ink}"
         font-family="ui-sans-serif, -apple-system, 'Segoe UI', Inter, Helvetica, Arial, sans-serif">${esc(value)}</text>`
 
-function board({ pushes, latest, repos }, theme) {
+function board({ pushes, latest, repos, views }, theme) {
   const dark = theme === 'dark'
   const bg = dark ? '#0d1117' : '#ffffff'
   const ink = dark ? '#f0f6fc' : '#0d1117'
@@ -78,21 +107,21 @@ function board({ pushes, latest, repos }, theme) {
   const H = 268
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img"
-     aria-label="Devank Yadav — status board. ${pushes} pushes this week, ${repos} public repositories, last push ${relativeDay(latest)}.">
+     aria-label="Devank Yadav — status board. ${pushes} pushes this week, ${repos} public repositories, last push ${relativeDay(latest)}, ${compact(views)} profile views.">
   <rect width="${W}" height="${H}" fill="${bg}"/>
   <rect x="0" y="0" width="${W}" height="3" fill="${ink}"/>
 
   <text x="40" y="58" font-size="13" letter-spacing="2.4" fill="${muted}"
         font-family="ui-monospace, SFMono-Regular, Menlo, monospace">DEVANK YADAV</text>
-  <text x="40" y="100" font-size="27" font-weight="600" fill="${ink}"
-        font-family="ui-sans-serif, -apple-system, 'Segoe UI', Inter, Helvetica, Arial, sans-serif">I build software people forget is running.</text>
+  <text x="38" y="112" font-size="48" font-weight="700" letter-spacing="-1" fill="${ink}"
+        font-family="ui-sans-serif, -apple-system, 'Segoe UI', Inter, Helvetica, Arial, sans-serif">I build.</text>
 
   <line x1="40" y1="132" x2="${W - 40}" y2="132" stroke="${rule}" stroke-width="1"/>
 
   ${cell(40, 164, 'pushes / wk', String(pushes), ink, muted)}
   ${cell(220, 164, 'public repos', String(repos), ink, muted)}
   ${cell(400, 164, 'last push', relativeDay(latest), ink, muted, 24)}
-  ${cell(620, 164, 'status', 'shipping', ink, muted, 24)}
+  ${cell(620, 164, 'profile views', compact(views), ink, muted)}
 
   <text x="40" y="242" font-size="12" fill="${muted}"
         font-family="ui-monospace, SFMono-Regular, Menlo, monospace">NOW · ${esc(NOW_SHIPPING)}</text>
@@ -102,10 +131,10 @@ function board({ pushes, latest, repos }, theme) {
 `
 }
 
-const [{ pushes, latest }, user] = await Promise.all([pushActivity(), api(`/users/${USER}`)])
-const data = { pushes, latest, repos: user.public_repos }
+const [{ pushes, latest }, user, views] = await Promise.all([pushActivity(), api(`/users/${USER}`), profileViews()])
+const data = { pushes, latest, repos: user.public_repos, views }
 
 await writeFile('assets/board-light.svg', board(data, 'light'))
 await writeFile('assets/board-dark.svg', board(data, 'dark'))
 
-console.log(`board: ${pushes} pushes/wk · ${data.repos} repos · last push ${relativeDay(latest)}`)
+console.log(`board: ${pushes} pushes/wk · ${data.repos} repos · last push ${relativeDay(latest)} · ${compact(views)} views`)
