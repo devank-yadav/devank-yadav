@@ -1,6 +1,6 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/board-dark.svg?v=2026091023">
-  <img alt="Devank Yadav — a glanceOS board showing pushes this week, public repositories, last push, and what is currently shipping." src="assets/board-light.svg?v=2026091023">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/board-dark.svg?v=202609102337">
+  <img alt="Devank Yadav — a glanceOS board showing pushes this week, public repositories, last push, and what is currently shipping." src="assets/board-light.svg?v=202609102337">
 </picture>
 
 <p align="right"><img alt="Profile views" src="https://komarev.com/ghpvc/?username=devank-yadav&label=profile%20views&color=24292f&style=flat-square"></p>
