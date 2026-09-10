@@ -1,6 +1,6 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/board-dark.svg?v=2026091020">
-  <img alt="Devank Yadav — a glanceOS board showing pushes this week, public repositories, last push, and what is currently shipping." src="assets/board-light.svg?v=2026091020">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/board-dark.svg?v=2026091021">
+  <img alt="Devank Yadav — a glanceOS board showing pushes this week, public repositories, last push, and what is currently shipping." src="assets/board-light.svg?v=2026091021">
 </picture>
 
 That board is a **glanceOS** screen. glanceOS is the dashboard platform I build — it turns any
@@ -30,7 +30,7 @@ Not all of it is on GitHub. The hardware and the client work live elsewhere; tho
 | **[glanceOS](https://github.com/devank-yadav/glanceos)** | Turns any spare screen — a monitor, an old tablet, an e-paper panel — into a calm dashboard. No settings on the device: plug it in, claim it with a short code, done. 190 integrations, 221 block types, 166 templates, a `<32 KB` screen runtime. | TypeScript · pnpm monorepo · Docker |
 | **[slipdesk](https://github.com/devank-yadav/slipdesk)** | Back office for a vehicle-hire operator: duty slips become customer-signed GST invoices. E-signature portal, AI slip parsing from text and images, bulk import, per-driver reports. Runs in production on their domain. | Flask · Turso/libSQL · Vercel |
 | **[AutoRename](https://github.com/devank-yadav/AutoRename)** | macOS menu-bar app that renames dropped files from what is *inside* them — OCR for images, text for PDFs, transcription for audio and video. Builds a universal `.app` with `swiftc`, no Xcode project. | Swift · Vision · PDFKit · AVFoundation |
-| **[Lirra](https://github.com/devank-yadav/storycure)** | A storytelling companion for children. Detects emotion in a child's speech and text, generates a story around it, and narrates it in a cloned parent voice with comic-style art. Built at **Cal Hacks 12.0**. | React · FastAPI · Supabase · Whisper |
+| **[Lirra](https://github.com/devank-yadav/lirra)** | A storytelling companion for children. Detects emotion in a child's speech and text, generates a story around it, and narrates it in a cloned parent voice with comic-style art. Built at **Cal Hacks 12.0**. | React · FastAPI · Supabase · Whisper |
 | **[simple-teleprompter](https://github.com/devank-yadav/simple-teleprompter)** | Adjustable speed, mirroring, keyboard control. One page, no dependencies, no build step. | Vanilla JS |
 | **[CarbonSight](https://github.com/pennapps-carbon-sight/carbon-sight)** · 2025 | Cut AI emissions, not quality — a dashboard that tracks the cost, latency, and energy profile of LLM usage across teams, and routes work to a lighter model when the heavy one is not worth it. Built at **PennApps 2025** with a team of four. | React · TypeScript · Supabase · Recharts |
 | **[Tuk Tuk](https://devpost.com/software/tuk-tuk-lowz06)** · 2025 | Campus carpooling where everyone is a verified member. Students, faculty, and staff post and search rides. Built at **HackPSU Spring 2025**. | Web |
