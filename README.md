@@ -1,6 +1,6 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/board-dark.svg?v=2026091021">
-  <img alt="Devank Yadav — a glanceOS board showing pushes this week, public repositories, last push, and what is currently shipping." src="assets/board-light.svg?v=2026091021">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/board-dark.svg?v=2026091023">
+  <img alt="Devank Yadav — a glanceOS board showing pushes this week, public repositories, last push, and what is currently shipping." src="assets/board-light.svg?v=2026091023">
 </picture>
 
 That board is a **glanceOS** screen. glanceOS is the dashboard platform I build — it turns any
@@ -32,9 +32,9 @@ Not all of it is on GitHub. The hardware and the client work live elsewhere; tho
 | **[AutoRename](https://github.com/devank-yadav/AutoRename)** | macOS menu-bar app that renames dropped files from what is *inside* them — OCR for images, text for PDFs, transcription for audio and video. Builds a universal `.app` with `swiftc`, no Xcode project. | Swift · Vision · PDFKit · AVFoundation |
 | **[Lirra](https://github.com/devank-yadav/lirra)** | A storytelling companion for children. Detects emotion in a child's speech and text, generates a story around it, and narrates it in a cloned parent voice with comic-style art. Built at **Cal Hacks 12.0**. | React · FastAPI · Supabase · Whisper |
 | **[simple-teleprompter](https://github.com/devank-yadav/simple-teleprompter)** | Adjustable speed, mirroring, keyboard control. One page, no dependencies, no build step. | Vanilla JS |
-| **[CarbonSight](https://github.com/pennapps-carbon-sight/carbon-sight)** · 2025 | Cut AI emissions, not quality — a dashboard that tracks the cost, latency, and energy profile of LLM usage across teams, and routes work to a lighter model when the heavy one is not worth it. Built at **PennApps 2025** with a team of four. | React · TypeScript · Supabase · Recharts |
+| **[CarbonSight](https://github.com/pennapps-carbon-sight/carbon-sight)** · 2025 | Carbon-aware LLM routing — Google ADK agents send each prompt to the greenest Gemini model that can handle it, cache near-duplicate prompts by embedding, and reward the savings in `$GREEN`. 🏆 **MLH Best Use of the Gemini API, PennApps XXVI.** | Python · Google ADK · Gemini · React · Supabase |
 | **[Tuk Tuk](https://devpost.com/software/tuk-tuk-lowz06)** · 2025 | Campus carpooling where everyone is a verified member. Students, faculty, and staff post and search rides. Built at **HackPSU Spring 2025**. | Web |
-| **Zoodu** · 2024 | Resume parsing and candidate matching, built at **HackPSU 2024** with a team of five. | Flask · OpenAI · MySQL |
+| **[Zoodu](https://devpost.com/software/zoodu)** · 2024 | AI career and study guidance for students — turns a resume and a set of goals into personalised career paths, programmes, and next steps. 🏆 **Best RAG Chatbot, HackPSU Fall 2024.** | Flask · Python · OpenAI · SQL |
 | **ESP32 water-tank automation** | Embedded automation for a water tank. Runs unwatched, which is the whole point. | ESP32 · C |
 
 Also an **iPad-to-Mac drawing tablet** with a driver I wrote myself (2026), and a **Škoda India
