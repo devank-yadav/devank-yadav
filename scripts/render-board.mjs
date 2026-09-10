@@ -50,27 +50,26 @@ async function pushActivity() {
 
 /**
  * Profile views. GitHub has no API for them, so the count comes from a hit
- * counter that visitors' browsers load via a 1×1 pixel in the README. That
- * counter has no read-only endpoint — reading it here counts as a hit too — so
- * we record how many times this script has read it and subtract those.
+ * counter that visitors' browsers load through GitHub's image proxy via a 1×1
+ * pixel in the README. The counter only increments on requests from that
+ * proxy, so reading it here does not inflate it.
  */
 const STATE_FILE = 'assets/board-state.json'
 const COUNTER_URL = `https://komarev.com/ghpvc/?username=${USER}`
 
 async function profileViews() {
-  let state = { counterReads: 0, lastViews: null }
+  let state = { lastViews: null }
   try { state = { ...state, ...JSON.parse(await readFile(STATE_FILE, 'utf8')) } } catch {}
   try {
     const svg = await (await fetch(COUNTER_URL)).text()
     const numbers = [...svg.matchAll(/>([\d,]+)</g)].map((m) => Number(m[1].replace(/,/g, '')))
     if (!numbers.length) throw new Error('no count in counter SVG')
-    state.counterReads += 1
-    state.lastViews = Math.max(0, numbers.at(-1) - state.counterReads)
+    state.lastViews = numbers.at(-1)
   } catch (err) {
     // Keep the last known value rather than showing a wrong one.
     console.warn(`views: ${err.message}; keeping ${state.lastViews}`)
   }
-  await writeFile(STATE_FILE, JSON.stringify(state, null, 2) + '\n')
+  await writeFile(STATE_FILE, JSON.stringify({ lastViews: state.lastViews }, null, 2) + '\n')
   return state.lastViews
 }
 

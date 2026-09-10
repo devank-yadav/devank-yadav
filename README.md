@@ -1,6 +1,6 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/board-dark.svg?v=202609102354">
-  <img alt="Devank Yadav — a glanceOS board showing pushes this week, public repositories, last push, and what is currently shipping." src="assets/board-light.svg?v=202609102354">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/board-dark.svg?v=202609102356">
+  <img alt="Devank Yadav — a glanceOS board showing pushes this week, public repositories, last push, and what is currently shipping." src="assets/board-light.svg?v=202609102356">
 </picture>
 
 
