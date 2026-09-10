@@ -32,13 +32,14 @@ Not all of it is on GitHub. The hardware and the client work live elsewhere; tho
 | **[AutoRename](https://github.com/devank-yadav/AutoRename)** | macOS menu-bar app that renames dropped files from what is *inside* them — OCR for images, text for PDFs, transcription for audio and video. Builds a universal `.app` with `swiftc`, no Xcode project. | Swift · Vision · PDFKit · AVFoundation |
 | **[Lirra](https://github.com/devank-yadav/storycure)** | A storytelling companion for children. Detects emotion in a child's speech and text, generates a story around it, and narrates it in a cloned parent voice with comic-style art. Built at **Cal Hacks 12.0**. | React · FastAPI · Supabase · Whisper |
 | **[simple-teleprompter](https://github.com/devank-yadav/simple-teleprompter)** | Adjustable speed, mirroring, keyboard control. One page, no dependencies, no build step. | Vanilla JS |
+| **[CarbonSight](https://github.com/pennapps-carbon-sight/carbon-sight)** · 2025 | Cut AI emissions, not quality — a dashboard that tracks the cost, latency, and energy profile of LLM usage across teams, and routes work to a lighter model when the heavy one is not worth it. Built at **PennApps 2025** with a team of four. | React · TypeScript · Supabase · Recharts |
 | **[Tuk Tuk](https://devpost.com/software/tuk-tuk-lowz06)** · 2025 | Campus carpooling where everyone is a verified member. Students, faculty, and staff post and search rides. Built at **HackPSU Spring 2025**. | Web |
 | **Zoodu** · 2024 | Resume parsing and candidate matching, built at **HackPSU 2024** with a team of five. | Flask · OpenAI · MySQL |
 | **ESP32 water-tank automation** | Embedded automation for a water tank. Runs unwatched, which is the whole point. | ESP32 · C |
 
-Also an **iPad-to-Mac drawing tablet** with a driver I wrote myself (2026), **CarbonSight** (2025),
-and a **Škoda India documentation system** built during the factory-floor summer (2025) —
-write-ups at [devank.me](https://devank.me).
+Also an **iPad-to-Mac drawing tablet** with a driver I wrote myself (2026), and a **Škoda India
+documentation system** built during the factory-floor summer (2025) — write-ups at
+[devank.me](https://devank.me).
 
 ## How I work
 
