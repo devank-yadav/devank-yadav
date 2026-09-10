@@ -36,12 +36,14 @@ jobs:
         run: node scripts/render-board.mjs
 
       - name: Bust the camo cache
-        # GitHub proxies README images through camo and caches them by URL, so a
-        # changed file alone will not always show. Bumping ?v= in the README
-        # gives the new render a URL camo has not seen.
+        # GitHub proxies README images through camo and caches them by URL.
+        # Stamp the URL with a hash of the rendered SVGs: new content always
+        # gets a URL camo has never seen, and unchanged content keeps its
+        # cached one. (An hour-based stamp reused URLs within the same hour,
+        # so camo kept serving an older render.)
         run: |
-          stamp=$(date -u +%Y%m%d%H)
-          sed -i -E "s/(board-(light|dark)\.svg)\?v=[0-9]+/\1?v=$stamp/g" README.md
+          stamp=$(cat assets/board-light.svg assets/board-dark.svg | sha256sum | cut -c1-12)
+          sed -i -E "s/(board-(light|dark)\.svg)\?v=[0-9a-f]+/\1?v=$stamp/g" README.md
 
       - name: Commit if anything changed
         run: |
