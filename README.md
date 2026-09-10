@@ -3,6 +3,8 @@
   <img alt="Devank Yadav — a glanceOS board showing pushes this week, public repositories, last push, and what is currently shipping." src="assets/board-light.svg?v=2026091023">
 </picture>
 
+<p align="right"><img alt="Profile views" src="https://komarev.com/ghpvc/?username=devank-yadav&label=profile%20views&color=24292f&style=flat-square"></p>
+
 That board is a **glanceOS** screen. glanceOS is the dashboard platform I build — it turns any
 screen into something calm and glanceable, and a GitHub profile is a screen people glance at
 for about four seconds. So this one renders itself, on a schedule, from the same design

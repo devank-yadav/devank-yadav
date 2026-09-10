@@ -6,7 +6,7 @@
   <text x="40" y="58" font-size="13" letter-spacing="2.4" fill="#8b949e"
         font-family="ui-monospace, SFMono-Regular, Menlo, monospace">DEVANK YADAV</text>
   <text x="40" y="100" font-size="27" font-weight="600" fill="#f0f6fc"
-        font-family="ui-sans-serif, -apple-system, 'Segoe UI', Inter, Helvetica, Arial, sans-serif">I solve a problem once, then write it down.</text>
+        font-family="ui-sans-serif, -apple-system, 'Segoe UI', Inter, Helvetica, Arial, sans-serif">I build software people forget is running.</text>
 
   <line x1="40" y1="132" x2="840" y2="132" stroke="#30363d" stroke-width="1"/>
 
