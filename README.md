@@ -20,7 +20,7 @@ Before any of that, I spent a summer building factory-floor software in India.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://github.com/devank-yadav/devank-yadav/raw/board/stack-dark.svg">
-  <img alt="My stack: languages counted by how many of my projects use them, then the tools I have shipped with, grouped by layer from hardware to frontend." src="https://github.com/devank-yadav/devank-yadav/raw/board/stack-light.svg">
+  <img alt="My stack: Python, TypeScript, JavaScript, Java, C, C++, Swift, and SQL, then the frontend, backend, AI, data, shipping, and platform tools I have built with." src="https://github.com/devank-yadav/devank-yadav/raw/board/stack-light.svg">
 </picture>
 
 ## Selected work
