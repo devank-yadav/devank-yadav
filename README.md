@@ -18,6 +18,11 @@ I'm a third-year Computational Data Science student at **Penn State**, graduatin
 
 Before any of that, I spent a summer building factory-floor software in India.
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/devank-yadav/devank-yadav/raw/board/stack-dark.svg">
+  <img alt="My stack: languages counted by how many of my projects use them, then the tools I have shipped with, grouped by layer from hardware to frontend." src="https://github.com/devank-yadav/devank-yadav/raw/board/stack-light.svg">
+</picture>
+
 ## Selected work
 
 Not all of it is on GitHub. The hardware and the client work live elsewhere; those rows link out.
@@ -49,15 +54,12 @@ Most of what I build is meant to run without me watching it — a screen on a wa
 a slip desk a business depends on on a Tuesday. That constraint decides more of my
 architecture than any preference about frameworks.
 
-**Comfortable in:** TypeScript · Python · Swift · C · React · FastAPI · Flask · Postgres ·
-Supabase · Docker · embedded
-
 ## Elsewhere
 
 [devank.me](https://devank.me) · [LinkedIn](https://linkedin.com/in/devankyadav) ·
 [Devpost](https://devpost.com/devank22yadav) · dfy5121@psu.edu
 
-<sub>The board above regenerates hourly from the GitHub API, and GitHub caches it for up to five minutes. Source in
+<sub>The board and stack panel regenerate hourly from the GitHub API, and GitHub caches it for up to five minutes. Source in
 <a href="scripts/render-board.mjs"><code>scripts/render-board.mjs</code></a>.</sub>
 
 <!-- 1×1 hit counter: counts profile views for the board above. Invisible on purpose. -->

@@ -4,3 +4,4 @@ node_modules
 # Rendered by CI onto the board branch; never committed to main
 assets/board-*.svg
 assets/board-state.json
+assets/stack-*.svg

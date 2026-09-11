@@ -38,21 +38,25 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           USER_LOGIN: ${{ github.repository_owner }}
-          # The one hand-written line on the board. Edit it here.
-          NOW_SHIPPING: 'glanceOS v9.7 — alerts, teams, multi-page boards'
         run: node scripts/render-board.mjs
+
+      - name: Render the stack panel
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          USER_LOGIN: ${{ github.repository_owner }}
+        run: node scripts/render-stack.mjs
 
       - name: Publish to the board branch
         # The board lives on its own branch as a single commit that each render
         # replaces, so main's history only ever holds real changes.
         run: |
-          cp assets/board-light.svg assets/board-dark.svg assets/board-state.json "$RUNNER_TEMP/"
+          cp assets/board-*.svg assets/stack-*.svg assets/board-state.json "$RUNNER_TEMP/"
           git checkout --orphan render
           git rm -rfq --cached .
           git clean -fdxq
-          cp "$RUNNER_TEMP"/board-light.svg "$RUNNER_TEMP"/board-dark.svg "$RUNNER_TEMP"/board-state.json .
+          cp "$RUNNER_TEMP"/board-*.svg "$RUNNER_TEMP"/stack-*.svg "$RUNNER_TEMP"/board-state.json .
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add board-light.svg board-dark.svg board-state.json
+          git add board-*.svg stack-*.svg board-state.json
           git commit -qm "Render board"
           git push -qf origin render:board
