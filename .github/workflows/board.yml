@@ -27,6 +27,13 @@ jobs:
         with:
           node-version: 24
 
+      - name: Restore last render state
+        # The last known view count lives on the board branch, next to the SVGs.
+        run: |
+          git fetch --depth=1 origin board 2>/dev/null \
+            && git show origin/board:board-state.json > assets/board-state.json \
+            || echo "no previous state"
+
       - name: Render the board
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -35,20 +42,17 @@ jobs:
           NOW_SHIPPING: 'glanceOS v9.7 — alerts, teams, multi-page boards'
         run: node scripts/render-board.mjs
 
-      - name: Commit if anything changed
+      - name: Publish to the board branch
+        # The board lives on its own branch as a single commit that each render
+        # replaces, so main's history only ever holds real changes.
         run: |
-          if git diff --quiet -- assets; then
-            echo "board unchanged — nothing to commit"
-            exit 0
-          fi
+          cp assets/board-light.svg assets/board-dark.svg assets/board-state.json "$RUNNER_TEMP/"
+          git checkout --orphan render
+          git rm -rfq --cached .
+          git clean -fdxq
+          cp "$RUNNER_TEMP"/board-light.svg "$RUNNER_TEMP"/board-dark.svg "$RUNNER_TEMP"/board-state.json .
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets
-          git commit -m "Update board"
-          # A push to main can land while this runs. Rebase onto it and retry
-          # rather than failing the render.
-          for attempt in 1 2 3; do
-            git pull --rebase --autostash origin main && git push && exit 0
-            sleep $((attempt * 5))
-          done
-          exit 1
+          git add board-light.svg board-dark.svg board-state.json
+          git commit -qm "Render board"
+          git push -qf origin render:board
