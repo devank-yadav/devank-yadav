@@ -41,6 +41,9 @@ jobs:
         run: node scripts/render-board.mjs
 
       - name: Render the stack panel
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          USER_LOGIN: ${{ github.repository_owner }}
         run: node scripts/render-stack.mjs
 
       - name: Publish to the board branch
