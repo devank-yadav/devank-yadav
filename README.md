@@ -1,6 +1,6 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/board-dark.svg?v=0dbdf1541624">
-  <img alt="Devank Yadav — a glanceOS board showing pushes this week, public repositories, last push, and what is currently shipping." src="assets/board-light.svg?v=0dbdf1541624">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/board-dark.svg">
+  <img alt="Devank Yadav — a glanceOS board showing pushes this week, public repositories, last push, and what is currently shipping." src="assets/board-light.svg">
 </picture>
 
 
@@ -61,7 +61,7 @@ Supabase · Docker · embedded
 [devank.me](https://devank.me) · [LinkedIn](https://linkedin.com/in/devankyadav) ·
 [Devpost](https://devpost.com/devank22yadav) · dfy5121@psu.edu
 
-<sub>The board above regenerates hourly from the GitHub API. Source in
+<sub>The board above regenerates hourly from the GitHub API, and GitHub caches it for up to five minutes. Source in
 <a href="scripts/render-board.mjs"><code>scripts/render-board.mjs</code></a>.</sub>
 
 <!-- 1×1 hit counter: counts profile views for the board above. Invisible on purpose. -->
