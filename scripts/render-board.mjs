@@ -75,6 +75,14 @@ async function profileViews() {
 
 const compact = (n) => (n == null ? '—' : n >= 10000 ? `${(n / 1000).toFixed(1)}k` : n.toLocaleString('en-US'))
 
+
+/** When this render happened, in the owner's local time. */
+const updatedAt = () =>
+  new Intl.DateTimeFormat('en-US', {
+    timeZone: process.env.BOARD_TZ || 'America/New_York',
+    month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short',
+  }).format(new Date()).replace(',', ' ·').replace(/,/g, '')
+
 const relativeDay = (date) => {
   if (!date) return 'unknown'
   const days = Math.floor((Date.now() - date.getTime()) / 864e5)
@@ -95,7 +103,7 @@ const cell = (x, y, label, value, ink, muted, size = 34) => `
   <text x="${x}" y="${y + 38}" font-size="${size}" font-weight="600" fill="${ink}"
         font-family="ui-sans-serif, -apple-system, 'Segoe UI', Inter, Helvetica, Arial, sans-serif">${esc(value)}</text>`
 
-function board({ pushes, latest, repos, views }, theme) {
+function board({ pushes, latest, repos, views, updated }, theme) {
   const dark = theme === 'dark'
   const bg = dark ? '#0d1117' : '#ffffff'
   const ink = dark ? '#f0f6fc' : '#0d1117'
@@ -106,12 +114,14 @@ function board({ pushes, latest, repos, views }, theme) {
   const H = 268
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img"
-     aria-label="Devank Yadav — status board. ${pushes} pushes this week, ${repos} public repositories, last push ${relativeDay(latest)}, ${compact(views)} profile views.">
+     aria-label="Devank Yadav — status board. ${pushes} pushes this week, ${repos} public repositories, last push ${relativeDay(latest)}, ${compact(views)} profile views. Updated ${updated}.">
   <rect width="${W}" height="${H}" fill="${bg}"/>
   <rect x="0" y="0" width="${W}" height="3" fill="${ink}"/>
 
   <text x="40" y="58" font-size="13" letter-spacing="2.4" fill="${muted}"
         font-family="ui-monospace, SFMono-Regular, Menlo, monospace">DEVANK YADAV</text>
+  <text x="${W - 40}" y="58" font-size="11" letter-spacing="1.4" text-anchor="end" fill="${muted}"
+        font-family="ui-monospace, SFMono-Regular, Menlo, monospace">UPDATED ${esc(updated.toUpperCase())}</text>
   <text x="38" y="112" font-size="48" font-weight="700" letter-spacing="-1" fill="${ink}"
         font-family="ui-sans-serif, -apple-system, 'Segoe UI', Inter, Helvetica, Arial, sans-serif">I build.</text>
 
@@ -131,9 +141,9 @@ function board({ pushes, latest, repos, views }, theme) {
 }
 
 const [{ pushes, latest }, user, views] = await Promise.all([pushActivity(), api(`/users/${USER}`), profileViews()])
-const data = { pushes, latest, repos: user.public_repos, views }
+const data = { pushes, latest, repos: user.public_repos, views, updated: updatedAt() }
 
 await writeFile('assets/board-light.svg', board(data, 'light'))
 await writeFile('assets/board-dark.svg', board(data, 'dark'))
 
-console.log(`board: ${pushes} pushes/wk · ${data.repos} repos · last push ${relativeDay(latest)} · ${compact(views)} views`)
+console.log(`board: ${pushes} pushes/wk · ${data.repos} repos · last push ${relativeDay(latest)} · ${compact(views)} views · ${data.updated}`)
