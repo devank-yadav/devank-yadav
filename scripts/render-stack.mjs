@@ -43,12 +43,7 @@ const GROUPS = [
     ['fastapi', 'FastAPI', ['lirra', 'carbon-sight']],
     ['flask', 'Flask', ['slipdesk', 'zoodu']],
     ['zod', 'Zod', ['glanceos']],
-  ]],
-  ['ai', [
-    ['googlegemini', 'Gemini', ['carbon-sight']],
     ['google', 'Google ADK', ['carbon-sight']],
-    ['claude', 'Claude', ['slipdesk', 'lirra']],
-    [null, 'OpenAI', ['zoodu', 'lirra', 'slipdesk', 'AutoRename']], // no logo in Simple Icons
   ]],
   ['data', [
     ['postgresql', 'Postgres', ['lirra', 'carbon-sight']],
