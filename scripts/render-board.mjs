@@ -11,8 +11,6 @@ import { readFile, writeFile } from 'node:fs/promises'
 const USER = process.env.USER_LOGIN || 'devank-yadav'
 const TOKEN = process.env.GITHUB_TOKEN
 
-// The one line you edit by hand. Everything else on the board is live.
-const NOW_SHIPPING = process.env.NOW_SHIPPING || 'glanceOS v9.7 — alerts, teams, multi-page boards'
 
 const api = async (path) => {
   const res = await fetch(`https://api.github.com${path}`, {
@@ -76,6 +74,33 @@ async function profileViews() {
 const compact = (n) => (n == null ? '—' : n >= 10000 ? `${(n / 1000).toFixed(1)}k` : n.toLocaleString('en-US'))
 
 
+/**
+ * The most recent public push, excluding this profile repo. Push events no
+ * longer carry commit messages, so the head commit is looked up directly.
+ * Public events only: a private repo's name must never reach the board.
+ */
+async function latestWork() {
+  const events = await api(`/users/${USER}/events/public?per_page=100`)
+  const seen = new Set()
+  for (const e of events) {
+    if (e.type !== 'PushEvent' || !e.public || e.repo.name === `${USER}/${USER}`) continue
+    if (seen.has(e.repo.name)) continue
+    seen.add(e.repo.name)
+    try {
+      // The event only tells us which repo. Read that repo's current branch
+      // head rather than the event's SHA, so rewritten or squashed history
+      // never resurfaces here.
+      const [c] = await api(`/repos/${e.repo.name}/commits?per_page=1`)
+      const message = c.commit.message.split('\n')[0].trim()
+      if (/^Merge (branch|pull request|remote-tracking)/i.test(message)) continue
+      return { repo: e.repo.name.split('/')[1], message }
+    } catch { continue }
+  }
+  return null
+}
+
+const truncate = (s, n) => (s.length > n ? s.slice(0, n - 1).trimEnd() + '…' : s)
+
 /** When this render happened, in the owner's local time. */
 const updatedAt = () =>
   new Intl.DateTimeFormat('en-US', {
@@ -103,7 +128,7 @@ const cell = (x, y, label, value, ink, muted, size = 34) => `
   <text x="${x}" y="${y + 38}" font-size="${size}" font-weight="600" fill="${ink}"
         font-family="ui-sans-serif, -apple-system, 'Segoe UI', Inter, Helvetica, Arial, sans-serif">${esc(value)}</text>`
 
-function board({ pushes, latest, repos, views, updated }, theme) {
+function board({ pushes, latest, repos, views, updated, work }, theme) {
   const dark = theme === 'dark'
   const bg = dark ? '#0d1117' : '#ffffff'
   const ink = dark ? '#f0f6fc' : '#0d1117'
@@ -133,15 +158,17 @@ function board({ pushes, latest, repos, views, updated }, theme) {
   ${cell(620, 164, 'profile views', compact(views), ink, muted)}
 
   <text x="40" y="242" font-size="12" fill="${muted}"
-        font-family="ui-monospace, SFMono-Regular, Menlo, monospace">NOW · ${esc(NOW_SHIPPING)}</text>
+        font-family="ui-monospace, SFMono-Regular, Menlo, monospace">${work ? `LATEST · ${esc(truncate(`${work.repo} — ${work.message}`, 72))}` : ''}</text>
   <text x="${W - 40}" y="242" font-size="12" text-anchor="end" fill="${muted}"
         font-family="ui-monospace, SFMono-Regular, Menlo, monospace">rendered by glanceOS</text>
 </svg>
 `
 }
 
-const [{ pushes, latest }, user, views] = await Promise.all([pushActivity(), api(`/users/${USER}`), profileViews()])
-const data = { pushes, latest, repos: user.public_repos, views, updated: updatedAt() }
+const [{ pushes, latest }, user, views, work] = await Promise.all([
+  pushActivity(), api(`/users/${USER}`), profileViews(), latestWork(),
+])
+const data = { pushes, latest, repos: user.public_repos, views, updated: updatedAt(), work }
 
 await writeFile('assets/board-light.svg', board(data, 'light'))
 await writeFile('assets/board-dark.svg', board(data, 'dark'))

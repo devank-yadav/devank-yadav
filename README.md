@@ -1,26 +1,22 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://github.com/devank-yadav/devank-yadav/raw/board/board-dark.svg">
-  <img alt="Devank Yadav — a glanceOS board showing pushes this week, public repositories, last push, and what is currently shipping." src="https://github.com/devank-yadav/devank-yadav/raw/board/board-light.svg">
+  <img alt="Devank Yadav — a live board showing pushes this week, public repositories, last push, profile views, and my latest commit." src="https://github.com/devank-yadav/devank-yadav/raw/board/board-light.svg">
 </picture>
 
 
-That board is a **glanceOS** screen. glanceOS is the dashboard platform I build — it turns any
-screen into something calm and glanceable, and a GitHub profile is a screen people glance at
-for about four seconds. So this one renders itself, on a schedule, from the same design
-language as the real thing. Monochrome, type-first, no chrome.
+I'm a third-year Computational Data Science student at **Penn State**, graduating December 2027.
 
----
+- **I ship to production.** [slipdesk](https://github.com/devank-yadav/slipdesk) takes a vehicle-hire
+  operator from duty slips to customer-signed GST invoices, and it runs their billing today.
+- **I win hackathons.** 🏆 MLH Best Use of the Gemini API at PennApps XXVI, and 🏆 Best RAG Chatbot
+  at HackPSU Fall 2024.
+- **I go below the app layer.** I taught myself driver code no course asked of me, and I build
+  things meant to run unwatched — a screen on a wall, a sensor on a water tank.
+- **I build for people, not just code.** I work Penn State's IT desk, about thirty student and
+  faculty tickets a week, and I started the largest developer community on campus — now
+  seventy-plus members.
 
-## Now
-
-I am a third-year Computational Data Science student at **Penn State**, graduating December 2027.
-
-I work Penn State's IT desk — about thirty student and faculty tickets a week. I spent a summer
-building factory-floor software in India. I taught myself driver code no course asked of me, and
-I build things meant to run unwatched. I started the largest developer community on campus from
-nothing and run it for seventy-plus members.
-
-Currently shipping **glanceOS v9.7** — alerts that escalate on their own, teams, multi-page boards.
+Before any of that, I spent a summer building factory-floor software in India.
 
 ## Selected work
 
