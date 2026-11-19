@@ -19,41 +19,44 @@ const TOKEN = process.env.GITHUB_TOKEN
 
 // [logo slug, label, repos that use it]. A null slug renders as text only.
 const LANGUAGES = [
-  ['python', 'Python', ['slipdesk', 'zoodu', 'lirra', 'carbon-sight']],
-  ['typescript', 'TypeScript', ['glanceos', 'carbon-sight']],
-  ['javascript', 'JavaScript', ['lirra', 'simple-teleprompter', 'glanceos']],
+  ['python', 'Python', ['slipdesk', 'zoodu', 'lirra', 'carbon-sight', 'clawback']],
+  ['typescript', 'TypeScript', ['glanceos', 'carbon-sight', 'clawback']],
+  ['javascript', 'JavaScript', ['lirra', 'simple-teleprompter', 'glanceos', 'porchlight']],
   ['openjdk', 'Java', []],
   ['c', 'C', []],
   ['cplusplus', 'C++', []],
   ['swift', 'Swift', ['AutoRename', 'glanceos']],
-  ['db', 'SQL', ['slipdesk', 'zoodu', 'carbon-sight', 'lirra']],
+  ['db', 'SQL', ['slipdesk', 'zoodu', 'carbon-sight', 'lirra', 'clawback']],
 ]
 
 const GROUPS = [
   ['frontend', [
-    ['react', 'React', ['lirra', 'carbon-sight']],
+    ['react', 'React', ['lirra', 'carbon-sight', 'clawback', 'porchlight']],
     ['preact', 'Preact', ['glanceos']],
     ['vite', 'Vite', ['glanceos', 'lirra', 'carbon-sight']],
-    ['tailwindcss', 'Tailwind', ['carbon-sight']],
+    ['tailwindcss', 'Tailwind', ['carbon-sight', 'clawback']],
     ['swift', 'SwiftUI', ['AutoRename']],
+    [null, 'Next.js', ['clawback']],        // wordmark logo, unreadable at this size
+    [null, 'React Native', ['porchlight']], // wordmark logo, unreadable at this size
   ]],
   ['backend', [
-    ['nodedotjs', 'Node.js', ['glanceos']],
+    ['nodedotjs', 'Node.js', ['glanceos', 'porchlight']],
     ['hono', 'Hono', ['glanceos']],
-    ['fastapi', 'FastAPI', ['lirra', 'carbon-sight']],
+    ['fastapi', 'FastAPI', ['lirra', 'carbon-sight', 'clawback']],
     ['flask', 'Flask', ['slipdesk', 'zoodu']],
     ['zod', 'Zod', ['glanceos']],
     ['google', 'Google ADK', ['carbon-sight']],
   ]],
   ['data', [
-    ['postgresql', 'Postgres', ['lirra', 'carbon-sight']],
+    ['postgresql', 'Postgres', ['lirra', 'carbon-sight', 'clawback']],
     ['supabase', 'Supabase', ['lirra', 'carbon-sight']],
     ['sqlite', 'SQLite', ['glanceos', 'slipdesk']],
-    [null, 'MySQL', ['zoodu']], // wordmark logo, unreadable at this size
+    [null, 'MySQL', ['zoodu']],   // wordmark logo, unreadable at this size
+    [null, 'MongoDB', ['porchlight']],
     ['turso', 'Turso', ['slipdesk']],
   ]],
   ['ship · test', [
-    ['docker', 'Docker', ['glanceos']],
+    ['docker', 'Docker', ['glanceos', 'clawback']],
     ['vercel', 'Vercel', ['slipdesk', 'carbon-sight']],
     ['flydotio', 'Fly.io', ['glanceos']],
     ['githubactions', 'GitHub Actions', ['glanceos']],
